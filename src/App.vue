@@ -1,28 +1,44 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <Header :addTodo="addTodo"></Header>
+      <List :todos="todos" :deleteTodo="deleteTodo"></List>
+      <Footer></Footer>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import Header from "./components/Header";
+import List from "./components/List";
+import Footer from "./components/Footer";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  data() {
+    return {
+      todos: [
+        { id: 1, title: "AAA", complete: false },
+        { id: 4, title: "AAA", complete: true },
+        { id: 7, title: "AAA", complete: false },
+      ]
+    };
+  },
 
+  methods: {
+    addTodo (todo) {
+      this.todos.unshift(todo)
+    },
+    deleteTodo (index) {
+      this.todos.splice(index, 1)
+    }
+  },
+  components: {
+    Header,
+    List,
+    Footer
+  }
+};
+</script>
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
+

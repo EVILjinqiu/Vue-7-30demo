@@ -20,7 +20,7 @@
     },
     methods: {
       add () {
-        const title = this.title.trim()
+        let title = this.title.trim()
         if (!title) {
           alert('请输入')
           return
